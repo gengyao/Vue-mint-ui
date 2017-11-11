@@ -6,11 +6,14 @@ import vueResource from 'vue-resource';
 import mintui from "mint-ui"
 import 'mint-ui/lib/style.min.css'
 import './statics/mui/dist/css/mui.css'
+import VuePreview from 'vue-preview'; /* 预加载 github vue-preview */
+
 // import monent from "../node_modules/monent"
 
 // Vue.config.productionTip = false
 Vue.use(mintui)
 Vue.use(vueResource)
+Vue.use(VuePreview)
 // Vue.use(monent)
 //引入自己添加的
 

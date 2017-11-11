@@ -1,0 +1,11 @@
+body{
+    background: #fff;
+}
+.mint-header{
+    background: red;
+    color:#fff;
+}
+.mui-bar-tab .mui-tab-item.mui-active{
+
+    color: red;
+}

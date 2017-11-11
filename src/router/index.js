@@ -5,11 +5,14 @@ import home from '@/components/home/home.vue';
 import member from '@/components/member/member.vue';
 import setting from '@/components/setting/setting.vue';
 import shopCar from '@/components/shopCar/shopCar.vue';
-import newList from "@/components/new/newlist.vue"
-import newinfo from "@/components/new/newinfo.vue"
-import imglist from "@/components/img/imglist";
+import newList from "@/components/new/newlist.vue";
+import newinfo from "@/components/new/newinfo.vue";
+import imglist from "@/components/img/imglist.vue";
+import imginfo from "@/components/img/imginfo.vue";
+
 
 Vue.use(Router)
+// 注意写路由地址时不加 点
 
 export default new Router({
   linkActiveClass: 'mui-active',
@@ -44,6 +47,10 @@ export default new Router({
     {
       path:"/img/imglist",
       component:imglist
+    },
+    {
+      path:"/img/imglist/imginfo/:test1",
+      component:imginfo
     }
   ]
 })

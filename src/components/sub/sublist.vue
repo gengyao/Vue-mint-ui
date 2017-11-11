@@ -77,8 +77,14 @@ export default {
         var page = page||1;
       var url = common.testapi + "/api/getcomments/" + this.id + "?pageindex="+page;
       this.$http.get(url).then(function(res) {
-        // console.log(res.body);
-        this.list = res.body.message;
+        if(page==1){  /*当第一页时显示的数据  */
+          this.list=res.body.message
+        }
+        else{
+          // console.log(res.body);
+        this.list = this.list.concat(res.body.message);
+        }
+       
       });
     }
   }

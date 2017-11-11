@@ -13,11 +13,14 @@
             <div class="sortImg">
                 <ul>
                     <li v-for="(item,index) in imgCategory" :key="index">
-                    <img v-lazy="item.img_url" /> 
+                      <router-link :to="'/img/imglist/imginfo/'+item.id" >
+                       <img v-lazy="item.img_url" /> 
+                     
                     <div class="text">
                         <h4 v-text="item.title"></h4>
                         <p v-text="item.zhaiyao"></p>
                     </div>
+                     </router-link>
                 
                     </li>
                 </ul>
@@ -64,12 +67,6 @@ export default {
 </script>
 
 <style scoped>
-/* 页面中间整体部分 */
-/* imgBox{
-    margin-top:40px;
-    margin-bottom:50px;
-
-} */
 /* 分类标题 */
 .sortBox {
   width: 320px;
@@ -87,16 +84,12 @@ export default {
 .sortBox li {
   float: left;
   padding: 0 5px;
-  /* height: 30px; */
-  /* line-height: 30px; */
+  height: 30px;
+  line-height: 30px;
   text-align: center;
 }
 /* 图片部分 */
-/* .sortImg  {
-  margin-top: 87px;
-  margin-bottom:50px;
 
-} */
 
 .sortImg img {
    width: 100%;
@@ -116,10 +109,9 @@ export default {
 }
 .text{
     position: absolute;
-    /* z-index: 9999; */
    bottom: 0px;
     left: 5px;
-    width: 100%;
+    /* width: 100%; */
     height: 100px;
     font-size: 14px;
     overflow: hidden;
@@ -128,6 +120,7 @@ export default {
 }
 .text h4{
     font-size:16px;
+    color:#fff;
 }
 .text p{
   color:#fff;

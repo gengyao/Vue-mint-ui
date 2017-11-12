@@ -9,6 +9,8 @@ import newList from "@/components/new/newlist.vue";
 import newinfo from "@/components/new/newinfo.vue";
 import imglist from "@/components/img/imglist.vue";
 import imginfo from "@/components/img/imginfo.vue";
+import buylist from '@/components/buy/buylist.vue';
+import buyinfo from '@/components/buy/buyinfo.vue'
 
 
 Vue.use(Router)
@@ -51,6 +53,14 @@ export default new Router({
     {
       path:"/img/imglist/imginfo/:test1",
       component:imginfo
+    },
+    {
+      path:"/buy/buylist",
+      component:buylist
+    },
+    {
+      path:"/buy/buylist/buyinfo/:id",
+      component:buyinfo
     }
   ]
 })

@@ -2,7 +2,7 @@
   <div>
      <ul class="mui-table-view mui-grid-view">
 		        <li class="mui-table-view-cell mui-media mui-col-xs-6" v-for="(item,index) in list" :key ="index">
-		           <router-link :to="'/buy/buylist/buyinfo/'+list.id">
+		           <router-link :to="'/buy/buylist/buyinfo/'+item.id">
 		                <img class="mui-media-object" :src="item.img_url">
 		                <div class="mui-media-body">{{item.title}}</div>
                          <div class="textinfo">

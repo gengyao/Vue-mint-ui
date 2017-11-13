@@ -1,5 +1,11 @@
 <template>
     <div>
+      
+      <mt-header title="图片分享详情" id="return">
+         <router-link to="/img/imglist" slot="left">
+            <mt-button icon="back">返回</mt-button>
+        </router-link>
+    </mt-header>
         <h3>{{text.title}}</h3>
         <p>{{text.add_time |getTime}}</p>
         <i></i>

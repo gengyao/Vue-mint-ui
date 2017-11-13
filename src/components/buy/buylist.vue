@@ -1,5 +1,10 @@
 <template>
   <div>
+    <mt-header title="商品购买" id="return">
+         <router-link to="/home" slot="left">
+            <mt-button icon="back">返回</mt-button>
+        </router-link>
+    </mt-header>
      <ul class="mui-table-view mui-grid-view">
 		        <li class="mui-table-view-cell mui-media mui-col-xs-6" v-for="(item,index) in list" :key ="index">
 		           <router-link :to="'/buy/buylist/buyinfo/'+item.id">
@@ -7,10 +12,13 @@
 		                <div class="mui-media-body">{{item.title}}</div>
                          <div class="textinfo">
                             <div class="price">
-                                <span>￥{{item.sell_price}}</span><s>￥{{item.market_price}}</s>
+                                <span><s>￥{{item.sell_price}}</s>
+                                </span>
+                                <i>￥{{item.market_price}}</i>
                             </div>
                             <div>
-                                <span>热卖中</span><span class="right">剩余：{{item.stock_quantity}}</span>
+                                <span>热卖中</span>
+                                <span class="right">剩余：{{item.stock_quantity}}</span>
                             </div>
                         </div>
 		           </router-link>
@@ -78,26 +86,36 @@ img {
   padding: 0;
 }
 .mui-table-view.mui-grid-view .mui-table-view-cell {
-  text-align: unset;
+  text-align:left;
 }
 .mui-table-view.mui-grid-view .mui-table-view-cell a {
   margin-left: 0;
 }
 .textinfo {
   padding-top: 5px;
+  padding-bottom: 3px;
   margin-top: 10px;
   font-size: 14px;
-  background-color: #ccc;
-  height: 60px;
+  background-color: #eee;
+  height: 50px;
   position: relative;
 }
 .textinfo span {
   line-height: 24px;
 }
+
 .textinfo .right {
   position: absolute;
-  bottom: 0;
-  range: 20px;
+  /* bottom: 0; */
+  right: 5px;
+}
+s{
+  padding-left: 3px;
+  color: red;
+}
+i{
+  font-style: normal;
+  margin-left: 15px;  
 }
 </style>
 

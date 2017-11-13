@@ -1,5 +1,10 @@
 <template>
 <div>
+   <mt-header title="图片分享" id="return">
+         <router-link to="/home" slot="left">
+            <mt-button icon="back">返回</mt-button>
+        </router-link>
+    </mt-header>
     <!-- 标题部分 -->
     <div class="imgBox">
         <div class="sortBox">

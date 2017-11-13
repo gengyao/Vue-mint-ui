@@ -125,5 +125,8 @@ export default {
   height: 30px;
   line-height: 30px;
 }
+div {
+  padding:0;
+}
 </style>
 

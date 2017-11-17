@@ -1,10 +1,10 @@
 <template>
 <div >
-   <mt-header title="新闻资讯详情" id="return">
+   <!-- <mt-header title="新闻资讯详情" id="return">
          <router-link to="/new/newlist" slot="left">
             <mt-button icon="back">返回</mt-button>
         </router-link>
-    </mt-header>
+    </mt-header> -->
     <div class="content">
     <h4>{{list.title}}</h4>
    <p>{{list.add_time}}</p>

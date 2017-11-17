@@ -1,10 +1,10 @@
 <template>
   <div>
-    <mt-header title="商品购买" id="return">
+    <!-- <mt-header title="商品购买" id="return">
          <router-link to="/home" slot="left">
             <mt-button icon="back">返回</mt-button>
         </router-link>
-    </mt-header>
+    </mt-header> -->
      <ul class="mui-table-view mui-grid-view">
 		        <li class="mui-table-view-cell mui-media mui-col-xs-6" v-for="(item,index) in list" :key ="index">
 		           <router-link :to="'/buy/buylist/buyinfo/'+item.id">
@@ -54,7 +54,7 @@ export default {
         } else {
           this.list =this.list.concat(res.body.message) ;
         }
-        console.log(res.body.message);
+        // console.log(res.body.message);
       });
     }
   }

@@ -1,10 +1,10 @@
 <template>
 <div>
-   <mt-header title="新闻资讯" id="return">
+   <!-- <mt-header title="新闻资讯" id="return">
          <router-link to="/home" slot="left">
             <mt-button icon="back">返回</mt-button>
         </router-link>
-    </mt-header>
+    </mt-header> -->
 <ul class="mui-table-view">
 				<li class="mui-table-view-cell mui-media" v-for="(item,index) in list " :key="index">
 					<router-link :to="'/new/newinfo/'+item.id" :id="item.id">

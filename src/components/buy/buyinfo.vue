@@ -1,10 +1,10 @@
 <template>
 <div>
-  <mt-header title="商品购买详情页" id="return">
+  <!-- <mt-header title="商品购买详情页" id="return">
          <router-link to="/buy/buylist" slot="left">
             <mt-button icon="back">返回</mt-button>
         </router-link>
-    </mt-header>
+    </mt-header> -->
     <div class="top">
    <swipes :img="list"></swipes>
     </div>
@@ -15,7 +15,11 @@
             <span> 市场价: <s>￥{{goodsinfo. market_price}}</s></span>
             <span class="sellPrice">销售价:<i>￥{{goodsinfo.sell_price}}</i></span>
         </p>
-        <p>
+        <p class="animate">
+          <transition  @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter">
+              <span class="ball" v-if="show"></span>
+          </transition>
+         
          <span class="order">购买数量:</span> 
          <amount @send="getNumber"></amount>
         </p>
@@ -48,6 +52,8 @@
 import swipes from "../sub/sublunbo";
 import amount from "../buy/buyamount";
 import common from "../common";
+import { vm, send } from "../sub/vm";
+import { key, setItem } from "../sub/localStorage";
 export default {
   components: {
     swipes,
@@ -58,7 +64,8 @@ export default {
       id: this.$route.params.id,
       list: {},
       goodsinfo: {},
-      number:1
+      number: 1,
+      show:false
     };
   },
   created: function() {
@@ -67,9 +74,10 @@ export default {
     // this.getNumber()
   },
   methods: {
-    getNumber(count){
-      console.log(count)
-      this.number=count;
+  
+    getNumber(count) {
+      // console.log(count)
+      this.number = count;
     },
     getlunboimg() {
       var url = common.testapi + "/api/getthumimages/" + this.id;
@@ -81,12 +89,36 @@ export default {
       var url = common.testapi + "/api/goods/getinfo/" + this.id;
       this.$http.get(url).then(function(res) {
         this.goodsinfo = res.body.message[0];
-        console.log(res.body.message);
+        // console.log(res.body.message);
       });
     },
-    addShopCar:function(){
-      console.log(this.number)
-    }
+    addShopCar: function() {
+      vm.$emit(send, this.number);
+      // console.log(this.number)
+      /* 往 locstorage里添加数据 格式为 {goodsid:商品id,count:商品数量} */
+      var val = {};
+      val.goodsid= this.id;
+      val.count = this.number;
+      
+      setItem(val);
+
+      this.show=!this.show;
+    },
+
+   beforeEnter:function(el){
+     el.style.transform="translate(0,0)"
+     el.innerText=this.number
+  },
+  enter:function(el,done){
+    el.offsetWidth; /* ???? */
+  //  console.log( el.offsetWidth)
+    el.style.transform="translate(70px,360px)"
+    done()
+  },
+  afterEnter:function(){
+    this.show=!this.show
+
+  },
   }
 };
 </script>
@@ -100,9 +132,7 @@ export default {
   margin: 3px;
   padding: 5px;
 }
-.top {
-  /* margin-top: 45px; */
-}
+
 .middle {
   height: 192px;
 }
@@ -122,7 +152,7 @@ hr {
 }
 .middle div {
   display: inline-block;
-  margin-le: 5px;
+  margin-left: 5px;
 }
 .bottom {
   height: 134px;
@@ -138,7 +168,27 @@ hr {
 .mint-button--danger.is-plain {
   margin-top: 20px;
 }
-.order{
+.order {
   padding-right: 3px;
+}
+/* 实现小球动画 */
+/* 先再页面展示出小球静态样式,再用vue的钩子函数,实现动画效果(一半 的动画.从无到有) */
+/* 步骤,定位使小球显示在购物数量附近,采用v-if控制小球元素的出现与隐藏,(点击加入购物时让show显示true,动画结束时变为false,进入enter方法里,动画结束时要调用done()方法,vue提供的过渡实现小球动画(给要实现动画的标签添加transtion标签,并在transtion标签里注册进入前,进入,进入后的动画事件) */
+.middle .animate {
+  position: relative;
+}
+.middle .animate .ball {
+  width: 15px;
+  height: 15px;
+  background-color: red;
+  position: absolute;
+  left: 125px;
+  top: 5px;
+  border-radius: 50%;
+  transition: all 2s ease;
+  z-index: 100;
+  color: white;
+  line-height: 15px;
+  text-align: center;
 }
 </style>

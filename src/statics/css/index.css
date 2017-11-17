@@ -13,3 +13,19 @@ body{
     background: rgb(247, 244, 244);
     color: black;
   }
+  *{
+    margin: 0;
+    padding: 0;
+}
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  
+  color: #2c3e50;
+  margin-top: 40px;
+  margin-bottom: 50px;
+}
+.mint-header-title{
+    margin-left: 60px;
+}

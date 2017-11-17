@@ -2,7 +2,10 @@
   <div id="app">
     <!-- 1 头部 mint-ui -->
    <header class="mint-header is-fixed">
-             <div class="mint-header-button is-left"></div>
+       <div v-if="isShow">
+<div class="mint-header-button is-left" @click="backTo()" >返回</div>
+       </div>
+             
              <h1 class="mint-header-title">任意购商城</h1>
              <div class="mint-header-button is-right"></div>
          </header>
@@ -20,7 +23,7 @@
              </router-link>
              <router-link class="mui-tab-item" to="/shopCar">
                  <span class="mui-icon mui-icon-contact">
-                     <span class="mui-badge">6</span>
+                     <span class="mui-badge" id="tag">6</span>
                  </span>
                  <span class="mui-tab-label">购物车</span>
              </router-link>
@@ -34,22 +37,48 @@
 </template>
 
 <script>
+import { vm, send } from "./components/sub/vm";
 export default {
-}
+  data: function() {
+    return {
+      isShow: false
+    };
+  },
+  created: function() {
+    vm.$on(send, function(input) {
+      var domElement = document.getElementById("tag");
+      /* 获取到的元素内容为字符串,需要类型转换成数值型 */
+      domElement.innerText = domElement.innerText - 0 + input;
+      // console.log(domElement)
+    });
+  },
+  watch: {
+     
+    $route: function(newstr,oldstr) {
+        // console.log(newstr)
+        // console.log(oldstr)
+      if (newstr.path.toLowerCase() == "/home") {
+        
+        //    console.log( this.isShow)
+        this.isShow = false;
+        //   console.log( this.isShow)
+         
+      } else {
+        this.isShow = true;
+      }
+    }
+  },
+  methods: {
+    backTo:function() {
+        
+      //ES6函数的写法
+      /* 利用路由对象的go(-1),返回上一级,此方法是vue-router中的 */
+      this.$router.go(-1);
+    }
+  }
+};
 </script>
 
 <style>
-*{
-    margin: 0;
-    padding: 0;
-}
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  
-  color: #2c3e50;
-  margin-top: 40px;
-  margin-bottom: 50px;
-}
+
 </style>

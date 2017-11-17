@@ -1,10 +1,10 @@
 <template>
 <div>
-   <mt-header title="图片分享" id="return">
+   <!-- <mt-header title="图片分享" id="return">
          <router-link to="/home" slot="left">
             <mt-button icon="back">返回</mt-button>
         </router-link>
-    </mt-header>
+    </mt-header> -->
     <!-- 标题部分 -->
     <div class="imgBox">
         <div class="sortBox">
@@ -56,7 +56,7 @@ export default {
       var url = common.testapi + "/api/getimgcategory";
       this.$http.get(url).then(function(res) {
         this.sort = res.body.message;
-        console.log(res.body.message);
+        // console.log(res.body.message);
         this.sortWidth = (res.body.message.length + 1) * 80;
       });
     },
@@ -64,7 +64,7 @@ export default {
       var url = common.testapi + "/api/getimages/" + id;
       this.$http.get(url).then(function(res) {
         this.imgCategory = res.body.message;
-        console.log(res.body.message);
+        // console.log(res.body.message);
       });
     }
   }
